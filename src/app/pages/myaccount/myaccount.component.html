@@ -1,0 +1,74 @@
+<div class=restaurant>
+    <div class="restaurant--filter">
+        <div>
+            <h2 class="example-h2">Countries</h2>
+            <section class="example-section" *ngFor="let c of countries">
+                <mat-checkbox class="example-margin" [(ngModel)]="c.isChecked" (change)="checkCountry()">{{c.name}}
+                </mat-checkbox>
+            </section>
+        </div>
+        <div>
+            <h2 class="example-h2">Cuisine</h2>
+            <section class="example-section" *ngFor="let cu of cuisine">
+                <mat-checkbox class="example-margin" [(ngModel)]="cu.isChecked" (change)="checkCuisine()">{{cu.name}}
+                </mat-checkbox>
+            </section>
+        </div>
+        <div>
+            <h2 class=" example-h2">Prices</h2>
+            <section class="example-section" *ngFor="let pr of prices">
+                <mat-checkbox class="example-margin" [(ngModel)]="pr.isChecked" (change)="checkPrice()">{{pr.name}}
+                </mat-checkbox>
+            </section>
+        </div>
+    </div>
+    <div class="restaurant--List">
+        <div class="restaurant--List--boxs">
+            <ng-container *ngFor="let r of tempRestaurants">
+                <div class="restaurant--List--box">
+                    <img src="{{r.image}}" alt="">
+                    <div class="restaurant--List--box--panel">
+                        <h3> {{r.Name}}</h3>
+                        <button class="btn-reserv" (click)="openDialog(r.Name)">Reserv</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+
+
+    </div>
+    <div class="restaurant--reservation">
+        <table>
+            <caption>
+                Reservations
+            </caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="col-rest-name">Restuarant</th>
+                    <th class="col-person">Person</th>
+                    <th class="col-date">Date</th>
+                    <th class="col-status">Status</th>
+                    <th ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rn of getReservationData(); let index=index" >
+                    <td>{{index+1}}</td>
+                    <td>{{rn.restuarantName}}</td>
+                    <td>{{rn.person}}</td>
+                    <td>{{rn.date| date:'dd/mm/yyyy hh:mm'  }}</td>
+                    <td>{{rn.status}}</td>
+                    <td><mat-icon class="icon-delete" (click)="removeReservation(rn.id)">delete</mat-icon></td>
+                </tr>
+            </tbody>
+            <!-- <tfoot>
+          <td class="price_txt" scope="col" colspan="2">Total Price</td>
+          <td align="center">$33.79</td>
+        </tfoot> -->
+        </table>
+
+    </div>
+
+</div>

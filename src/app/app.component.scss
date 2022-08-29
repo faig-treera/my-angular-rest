@@ -1,0 +1,18 @@
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    // background-image: linear-gradient(to right top, #f0fdfd, #dbefef, #c6e0e0, #b2d2d2, #9dc4c4);
+    
+    &__navigation {
+      height: 70px;
+    }
+    &__container {
+      padding: 20px;
+      flex: 1;
+      height: calc(100vh - 70px);
+
+    }
+  }
+  

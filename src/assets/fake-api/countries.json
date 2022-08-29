@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "name": "New Zealand",
+        "isChecked": false
+    },
+    {
+        "id": 2,
+        "name": "USA",
+        "isChecked": false
+    },
+    {
+        "id": 3,
+        "name": "Turkey",
+        "isChecked": false
+    },{
+        "id": 4,
+        "name": "Azerbaijan",
+        "isChecked": false
+    }
+]

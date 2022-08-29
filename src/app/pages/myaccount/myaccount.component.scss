@@ -1,0 +1,92 @@
+@import url(../../../assets/css/reservtbl.scss);
+
+.restaurant {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    
+    &--filter {
+        width: 10%;
+
+    }
+
+
+    &--List {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+
+        &--boxs {
+            width: 100%;
+
+            // margin: 10px;
+            // text-align: center;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+            img {
+                width: 200px;
+                height: 120px;
+            }
+
+
+        }
+
+        &--box {
+            margin-bottom: 10px;
+            margin-right: 20px;
+            background-image: linear-gradient(to bottom, #1a5a5a, #4e6a57, #777763, #94877e, #a39b9b);
+            padding: 10px;
+            height: 200px;
+            color: white;
+
+            &--panel {
+                h3 {
+                    width: 100px;
+                }
+
+                display: flex;
+                justify-content: space-between;
+
+            }
+
+          
+        }
+
+
+
+    }
+
+    &--reservation{
+        width: 30%;
+    }
+
+}
+
+.btn-reserv {
+    width: 60px;
+    height: 30px;
+    background-color: rgb(209, 173, 14);
+    border-color: rgb(209, 173, 14);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+.btn-reserv:hover {
+    background-color: #f8e00b;
+    color: black;
+
+
+}
+
+.icon-delete{
+
+    color: red;
+    cursor: pointer;
+}

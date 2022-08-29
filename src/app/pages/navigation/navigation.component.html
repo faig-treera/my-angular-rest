@@ -1,0 +1,19 @@
+<div class="navigation">
+    <div>
+    <a class="navigation__link"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        home
+    </a>
+    <a class="navigation__link" routerLink="/about" routerLinkActive="active">about</a>
+    <a class="navigation__link" routerLink="/myaccount" routerLinkActive="active" *ngIf="checkToken()" >myaccount</a>
+    
+</div>
+    <div class="navigation__registration">
+        <a class="navigation__link" routerLink="/login" *ngIf="!checkToken()" >Login</a>
+        <a class="navigation__link" routerLink="/register" *ngIf="!checkToken()"  >Sign Up</a>
+        <a class="navigation__link" routerLink="/login" *ngIf="checkToken()"  >Logout</a>
+    </div>
+</div>
+

@@ -9,6 +9,7 @@ import { Restaurant } from 'src/app/models/restaurant';
 import { ReservationStorageService } from 'src/app/service/reservation-storage.service';
 import { RestaurantApiService } from 'src/app/service/restaurant-api.service';
 import * as moment from 'moment';
+import { keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-myaccount',
@@ -19,6 +20,7 @@ import * as moment from 'moment';
 export class MyaccountComponent implements OnInit {
 
   public static userId = 0;
+  public static isAdmin = false;
   restaurants: Restaurant[] = [];
   tempRestaurants: Restaurant[] = [];
   countries: Country[] = [];
@@ -32,12 +34,13 @@ export class MyaccountComponent implements OnInit {
   constructor(private ras: RestaurantApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    MyaccountComponent.userId=this.getUserId();
+    MyaccountComponent.userId = this.getUserId();
+    MyaccountComponent.isAdmin = this.isAdmin();
     this.getCountryData();
     this.getCuisineData();
     this.getPriceData();
     this.getRestaurantData();
-    MyaccountComponent.reservation = ReservationStorageService.getReservations(MyaccountComponent.userId);
+    MyaccountComponent.reservation = ReservationStorageService.getReservations();
   }
   getUserId(): number {
     let userObj = localStorage.getItem('userObj');
@@ -46,6 +49,15 @@ export class MyaccountComponent implements OnInit {
     }
     const userId = JSON.parse(userObj).id;
     return userId;
+  }
+
+  isAdmin(): boolean {
+    let userObj = localStorage.getItem('userObj');
+    if (!userObj) {
+      userObj = "{}";
+    }
+    const isAdmin = JSON.parse(userObj).isAdmin;
+    return isAdmin;
   }
   getUniqueListBy(arr: Restaurant[], key: string) {
     return [...new Map(arr.map((item: any) => [item[key], item])).values()]
@@ -166,7 +178,8 @@ export class MyaccountComponent implements OnInit {
       person: data.person,
       date: data.date,
       status: "Pending",
-      userId: MyaccountComponent.userId
+      userId: MyaccountComponent.userId,
+      isChecked: false
     });
     console.log(MyaccountComponent.reservation)
     ReservationStorageService.setReservation(MyaccountComponent.reservation)
@@ -178,7 +191,42 @@ export class MyaccountComponent implements OnInit {
 
   }
   public getReservationData(): Reservation[] {
-    return MyaccountComponent.reservation;
+    return MyaccountComponent.isAdmin ? MyaccountComponent.reservation : MyaccountComponent.reservation.filter((x: any) => x.userId == MyaccountComponent.userId);
+  }
+  acceptReservation() {
+    let checkedRes = MyaccountComponent.reservation.filter(x => x.isChecked);
+    checkedRes.forEach((value, key) => {
+      MyaccountComponent.reservation.forEach((value2, key2) => {
+        if (value.id == value2.id) {
+          value2.status = "Accept";
+        }
+      })
+    })
+
+    MyaccountComponent.reservation.forEach((value, key) => {
+      value.isChecked = false;
+    })
+    ReservationStorageService.setReservation(MyaccountComponent.reservation);
+  }
+
+  rejectReservation() {
+    let checkedRes = MyaccountComponent.reservation.filter(x => x.isChecked);
+    checkedRes.forEach((value, key) => {
+      MyaccountComponent.reservation.forEach((value2, key2) => {
+        if (value.id == value2.id) {
+          value2.status = "Reject";
+        }
+
+      })
+
+    })
+
+    MyaccountComponent.reservation.forEach((value, key) => {
+      value.isChecked = false;
+    })
+    ReservationStorageService.setReservation(MyaccountComponent.reservation);
+
+
   }
 
 }
@@ -204,3 +252,4 @@ export class ReservationDialog {
   }
 
 }
+

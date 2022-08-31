@@ -5,5 +5,5 @@ export interface Reservation {
     date: string;
     status: string;
     userId:number;
-   
+    isChecked:boolean;
   }

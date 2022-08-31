@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(userStorage)
     this.userList = JSON.parse(userStorage ?? '[]');
+   this.userList.push({id: 66666, firstName: 'admin', lastName: 'admin', username: 'admin', password: '12345',isAdmin:true })
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -56,7 +57,7 @@ export class LoginComponent implements OnInit {
 
     if (checkUser.length != 0) {
       let _token = this.generateToken(32);
-      let userObj = { id: checkUser[0].id, token: _token };
+      let userObj = { id: checkUser[0].id, token: _token ,isAdmin : checkUser[0].isAdmin };
       localStorage.setItem('userObj', JSON.stringify(userObj))
       this.router.navigate(['/myaccount']);
       this.isLogin = true

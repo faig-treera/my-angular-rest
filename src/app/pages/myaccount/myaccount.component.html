@@ -39,36 +39,52 @@
 
     </div>
     <div class="restaurant--reservation">
-        <table>
-            <caption>
-                Reservations
-            </caption>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th class="col-rest-name">Restuarant</th>
-                    <th class="col-person">Person</th>
-                    <th class="col-date">Date</th>
-                    <th class="col-status">Status</th>
-                    <th ></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let rn of getReservationData(); let index=index" >
-                    <td>{{index+1}}</td>
-                    <td>{{rn.restuarantName}}</td>
-                    <td>{{rn.person}}</td>
-                    <td>{{rn.date| date:'dd/mm/yyyy hh:mm'  }}</td>
-                    <td>{{rn.status}}</td>
-                    <td><mat-icon class="icon-delete" (click)="removeReservation(rn.id)">delete</mat-icon></td>
-                </tr>
-            </tbody>
-            <!-- <tfoot>
-          <td class="price_txt" scope="col" colspan="2">Total Price</td>
-          <td align="center">$33.79</td>
-        </tfoot> -->
-        </table>
+        <div>
+            <h1 class="text-center">Reservations</h1>
+            <div class="mb-5">
+                <button mat-raised-button color="warn" class="mr-5" *ngIf="isAdmin()" (click)="rejectReservation()">Reject</button>
+                <button mat-raised-button color="primary" *ngIf="isAdmin()" (click)="acceptReservation()">Accept</button>
+            </div>
+            <div class="tableFixHead">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="col-chk"></th>
+                            <th class="col-rest-name">Restuarant</th>
+                            <th class="col-person">Person</th>
+                            <th class="col-date">Date</th>
+                            <th class="col-status">Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rn of getReservationData(); let index=index">
+                            <td>{{index+1}}</td>
+                            <td>
+                                <section class="example-section">
+                                    <mat-checkbox class="example-margin" [(ngModel)]="rn.isChecked">
+                                    </mat-checkbox>
+                                </section>
+                            </td>
+                            <td>{{rn.restuarantName}}</td>
+                            <td>{{rn.person}}</td>
+                            <td>{{rn.date| date:'dd/mm/yyyy hh:mm' }}</td>
+                            <td><button class="status--lbl" [ngClass]="{'status-pending': rn.status === 'Pending', 'status-accept' : rn.status=== 'Accept', 'status-reject' : rn.status=== 'Reject' }" >{{rn.status}}</button></td>
+                            <td>
+                                <mat-icon class="icon-delete" (click)="removeReservation(rn.id)">delete</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- <tfoot>
+                  <td class="price_txt" scope="col" colspan="2">Total Price</td>
+                  <td align="center">$33.79</td>
+                </tfoot> -->
+                </table>
+
+            </div>
+        </div>
+
 
     </div>
-
-</div>

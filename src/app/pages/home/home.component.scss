@@ -1,10 +1,32 @@
+@import 'animate.css';
+/* This only changes this particular animation duration */
+.animate__animated.animate__bounce {
+    --animate-duration: 1s;
+    --animate-repeat: 10;
+  }
+  
+  /* This changes all the animations globally */
+  :root {
+    --animate-duration: 800ms;
+    --animate-delay: 0.5s;
+  }
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    text-align: center;
+    
+}
+
 .restaurant {
     &--List {
         display: flex;
         flex-direction: row;
         width: 100%;
-       
-        
+
+
 
         &--boxs {
             width: 100%;
@@ -18,16 +40,45 @@
             flex-wrap: wrap;
 
             img {
-                width: 350px;
-                height: 200px;
+                width: 300px;
+                height: 180px;
             }
 
 
         }
 
         &--box {
+            position: relative;
             margin-bottom: 10px;
             margin-right: 20px;
+            background: #1a18196b;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .restaurant--list--info {
+            display: none;
+        }
+
+        &--box:hover {
+
+            box-shadow: 5px 5px 15px 5px #fff;
+            background: #1a18196b;
+
+            .restaurant--list--info {
+                display: block;
+                position: absolute;
+                top: 40%;
+                left: 40%;
+                color: rgb(252, 252, 252);
+                text-shadow: 3px 3px   rgb(230, 133, 8);
+                font-size: 30px;
+            }
+
+            img {
+                width: 450px;
+                height: 250px;
+            }
         }
 
     }

@@ -1,18 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    overflow-x: hidden;
-    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-    background-image: linear-gradient(to top, #696969, #898a8b, #abadae, #cdd1d2, #f0f6f6);
-
-}
-
 html,
-body {
-    height: 100%;
-}
-
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: url(assets/img/pexels-pixabay-235985.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
 }

@@ -39,10 +39,13 @@
         &--box {
             margin-bottom: 10px;
             margin-right: 20px;
-            background-image: linear-gradient(to bottom, #1a5a5a, #4e6a57, #777763, #94877e, #a39b9b);
+            background: #1a18196b;
             padding: 10px;
             height: 200px;
             color: white;
+            border-radius: 10px;
+
+    
 
             &--panel {
                 h3 {
@@ -57,7 +60,13 @@
           
         }
 
-
+        &--box:hover {
+            box-shadow: 5px 5px 15px 5px #fff;
+            img {
+                width: 250px;
+                height: 130px;
+            }
+        }
 
     }
 

@@ -1,9 +1,15 @@
+
+<div class="info">
+<h1 class="animate__animated animate__bounce animate__repeat-2">Find your dream restaurant</h1>
+</div>
+ 
 <div class=restaurant>
     <div class="restaurant--List">
         <div class="restaurant--List--boxs">
             <ng-container *ngFor="let r of restaurants">
                 <div class="restaurant--List--box">
                     <img src="{{r.image}}" alt="">
+                    <h1 class="restaurant--list--info" >{{r.cuisine}}</h1>
                     <h3> {{r.Name}}</h3>
                 </div>
             </ng-container>

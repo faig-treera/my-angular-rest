@@ -18,7 +18,7 @@ import * as moment from 'moment';
 
 export class MyaccountComponent implements OnInit {
 
-  userId = 0;
+  public static userId = 0;
   restaurants: Restaurant[] = [];
   tempRestaurants: Restaurant[] = [];
   countries: Country[] = [];
@@ -32,13 +32,12 @@ export class MyaccountComponent implements OnInit {
   constructor(private ras: RestaurantApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.userId=this.getUserId();
+    MyaccountComponent.userId=this.getUserId();
     this.getCountryData();
     this.getCuisineData();
     this.getPriceData();
     this.getRestaurantData();
-    MyaccountComponent.reservation = ReservationStorageService.getReservations(this.userId);
-
+    MyaccountComponent.reservation = ReservationStorageService.getReservations(MyaccountComponent.userId);
   }
   getUserId(): number {
     let userObj = localStorage.getItem('userObj');
@@ -167,7 +166,7 @@ export class MyaccountComponent implements OnInit {
       person: data.person,
       date: data.date,
       status: "Pending",
-      userId: 1
+      userId: MyaccountComponent.userId
     });
     console.log(MyaccountComponent.reservation)
     ReservationStorageService.setReservation(MyaccountComponent.reservation)

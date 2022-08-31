@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "name": "Caucasian",
+        "isChecked": false
+    },
+    {
+        "id": 2,
+        "name": "Indian",
+        "isChecked": false
+    },
+    {
+        "id": 3,
+        "name": "Europe",
+        "isChecked": false
+    },{
+        "id": 4,
+        "name": "Asia",
+        "isChecked": false
+    }
+]
